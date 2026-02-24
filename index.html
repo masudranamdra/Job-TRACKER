@@ -160,6 +160,46 @@
         </p>
     </div>
 
+
+
+
+    
+    <!-- all buttons and button styles -->
+    <!-- using Data -->
+    <!-- 
+
+     id="tabs-container" 
+
+     use div a kora hoisa -->
+
+    <!-- buttons data-tabe / class
+
+     1st button = data-tab="all" / tab-btn
+     2nd button = data-tab="interview" / tab-btn
+     3td button = data-tab="rejected" / tab-btn -->
+
+
+    <div class="flex space-x-2 mb-6" id="tabs-container">
+        <button data-tab="all"
+            class="tab-btn tab-active px-4 py-1.5 text-sm font-medium rounded border transition-colors">
+            All
+        </button>
+        <button data-tab="interview"
+            class="tab-btn tab-inactive px-4 py-1.5 text-sm font-medium rounded border transition-colors">
+            Interview
+        </button>
+        <button data-tab="rejected"
+            class="tab-btn tab-inactive px-4 py-1.5 text-sm font-medium rounded border transition-colors">
+            Rejected
+        </button>
+    </div>
+
+    <div id="jobs-container" class="space-y-4">
+    </div>
+
+
+    <script src="./script.js"></script>
+
 </body>
 
 </html>
