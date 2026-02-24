@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f8fafc;
+}
+
+/* all tabe style */
+.tab-active {
+    background-color: #3b82f6;
+    color: white;
+    border-color: #3b82f6;
+}
+
+
+/* all tabe inactive style */
+.tab-inactive {
+    background-color: white;
+    color: #64748b;
+    border-color: #e2e8f0;
+}
