@@ -107,3 +107,187 @@
         const dashRejected = document.getElementById('total-joba-rejected-number');
         const sectionCount = document.getElementById('job-count-number');
         const tabBtns = document.querySelectorAll('.tab-btn');
+
+
+
+        // logic function using dome elements and 
+function render() {
+
+    // array ta j job asa tar change ver 
+    let displayJobs = jobs;
+
+
+
+
+    // tab onujai filter lora
+    if (currentTab === "interview") {
+        displayJobs = jobs.filter(function (job) {
+            return job.status === "interview";
+        });
+    }
+    if (currentTab === "rejected") {
+        displayJobs = jobs.filter(function (job) {
+            return job.status === "rejected";
+        });
+    }
+
+
+
+
+
+    // update blank page and function colling kora
+
+    updateBlankPage();
+    sectionCount.textContent = displayJobs.length;
+
+    // if job na thaka tahola Blank page thakaba / jodi job thaka tahola job dhakaba ba return korba
+    if (displayJobs.length === 0) {
+        jobsContainer.innerHTML = `
+            <div class="bg-white p-12 rounded-lg shadow-sm border border-slate-200 text-center">
+        <img src="./img/assignment_7959593 1.png" class="mx-auto" >
+        <h3 class="text-lg font-bold text-slate-800">No jobs available</h3>
+        <p class="text-slate-500 mt-1 text-sm">
+            Check back soon for new job opportunities.
+        </p>
+    </div>
+        `;
+        return;
+    }
+
+
+
+
+
+    // ager content delete korba
+    jobsContainer.innerHTML = "";
+
+    // loop babohar kora card make kora
+
+    for (let abal = 0; abal < displayJobs.length; abal++) {
+
+        let job = displayJobs[abal];
+
+        // Badge logic
+        let badgeText = "NOT APPLIED";
+        let badgeClass = "bg-slate-100 text-slate-600";
+
+        if (job.status === "interview") {
+            badgeText = "INTERVIEW";
+            badgeClass = "bg-emerald-100 text-emerald-700";
+        }
+
+        if (job.status === "rejected") {
+            badgeText = "REJECTED";
+            badgeClass = "bg-rose-100 text-rose-700";
+        }
+
+
+
+
+
+
+        // card style kora hoisa abong card ar data ( ver${ job = var / .id = job id} ) ar maddoma add kora hoisa (#ata Bin image asa)
+
+        jobsContainer.innerHTML += `
+            <div class="bg-white p-6 rounded-lg shadow-sm border border-slate-200 relative group" data-id="${job.id}">
+                    <button class="btn-delete absolute top-4 right-4 text-slate-300 hover:text-rose-500 transition-colors">
+                    
+                        <img src="./img/litter.png" alt="" class="h-8 mt-2 mx-2.5 border-blue-200 rounded-[90%] p-1 border-[2px]  hover:text-rose-500 hover:border-red-500 ">
+
+                    </button>
+                
+                <h3 class="font-bold text-lg text-slate-800">${job.company}</h3>
+                <p class=" text-slate-500">${job.role}</p>
+                <p class="text-slate-500 text-sm mb-2"> ${job.location}  •  ${job.type}  •  ${job.salary}</p>
+
+                <span class="inline-block px-2 py-1 border-blue-600 rounded text-xs font-semibold ${badgeClass}">
+                    ${badgeText}
+                </span>
+
+                <p class="text-slate-800 text-sm mt-2">${job.desc}</p>
+
+
+
+
+
+
+                <div class="flex gap-3 mt-4">
+                    <button class="btn-interview border border-emerald-300 px-3 py-1 text-xs rounded">
+                        Interview
+                    </button>
+
+                    <button class="btn-rejected border border-rose-300 px-3 py-1 text-xs rounded">
+                        Rejected
+                    </button>
+                </div>
+
+            </div>
+        `;
+    }
+}
+
+
+
+
+// card use kora blank page upbate kora ar tona updateBlankPage nama function babohar kora hoisa
+
+function updateBlankPage() {
+    dashTotal.textContent = jobs.length;
+    dashInterview.textContent = jobs.filter(job => job.status === 'interview').length;
+    dashRejected.textContent = jobs.filter(job => job.status === 'rejected').length;
+}
+
+
+
+// button clack korla akta page thaka arik ta page a neya janba
+
+tabBtns.forEach(btn => {
+    btn.addEventListener('click', (changeBlankPage) => {
+        tabBtns.forEach(b => {
+            b.classList.remove('tab-active');
+            b.classList.add('tab-inactive');
+        });
+        changeBlankPage.target.classList.remove('tab-inactive');
+        changeBlankPage.target.classList.add('tab-active');
+
+        currentTab = changeBlankPage.target.dataset.tab;
+        render();
+    });
+});
+
+
+
+
+
+
+
+
+// Card Actions (Interview, Reject, Delete) kora
+// using veriable event in this code
+
+
+jobsContainer.addEventListener('click', (event) => {
+    const card = event.target.closest('div[data-id]');
+    if (!card) return;
+
+    const jobId = parseInt(card.dataset.id);
+    const jobIndex = jobs.findIndex(job => job.id === jobId);
+
+
+    if (event.target.closest('.btn-interview')) {
+        jobs[jobIndex].status = 'interview';
+        render();
+    }
+
+    else if (event.target.closest('.btn-rejected')) {
+        jobs[jobIndex].status = 'rejected';
+        render();
+    }
+
+    else if (event.target.closest('.btn-delete')) {
+        jobs.splice(jobIndex, 1);
+        render();
+    }
+});
+
+render();
