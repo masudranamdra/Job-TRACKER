@@ -13,11 +13,72 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css">
-    
+
     <title>Job-TRACKER</title>
 </head>
 
-<body>
+<body class="text-slate-800 p-4 md:p-8 max-w-5xl mx-auto">
+
+
+
+    <h1 class="text-2xl font-bold mb-6 text-slate-900">
+        Job Application Tracker
+    </h1>
+
+
+<!-- Job Application total -->
+
+
+
+            <!-- 
+            using id =
+                id="number-counting-jobs-total"
+                 -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
+        <div class="bg-white p-6 rounded-lg shadow-sm border border-slate-200">
+            <p class="text-sm font-medium text-slate-500 mb-1">
+                Total
+            </p>
+            <p id="number-counting-jobs-total" class="text-3xl font-bold text-blue-600">
+                8
+            </p>
+        </div>
+
+
+
+
+            <!-- 
+        using id =
+            id="total-joba-interview-number"
+             -->
+        <div class="bg-white p-6 rounded-lg shadow-sm border border-slate-200">
+            <p class="text-sm font-medium text-slate-500 mb-1">
+                Interview
+            </p>
+            <p id="total-joba-interview-number" class="text-3xl font-bold text-emerald-500">
+                0
+            </p>
+
+
+
+
+
+            <!-- 
+            using is =
+            id="total-joba-rejected-number" 
+             -->
+
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-sm border border-slate-200">
+            <p class="text-sm font-medium text-slate-500 mb-1">
+                Rejected
+            </p>
+            <p id="total-joba-rejected-number" class="text-3xl font-bold text-rose-500">
+                0
+            </p>
+        </div>
+    </div>
+
 
 </body>
 
