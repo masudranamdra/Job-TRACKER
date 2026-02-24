@@ -94,3 +94,16 @@
                 status: "not applied"
             }
         ];
+
+
+
+        // all button ver changing korsi 
+        let currentTab = 'all';
+
+        // DOM Elements OR all Id htmal page
+        const jobsContainer = document.getElementById('jobs-container');
+        const dashTotal = document.getElementById('number-counting-jobs-total');
+        const dashInterview = document.getElementById('total-joba-interview-number');
+        const dashRejected = document.getElementById('total-joba-rejected-number');
+        const sectionCount = document.getElementById('job-count-number');
+        const tabBtns = document.querySelectorAll('.tab-btn');
